@@ -12,23 +12,24 @@ public class AccountContext {
 	
 	private static ThreadLocal<AccountContext>		accountContext = new ThreadLocal<AccountContext>();
 	
-    /** 是否多笔台账记账 */
-    private boolean									isBatchAccount = false;
-
     /** 交易账户锁 */
-    private ThreadLocal<Map<String, SubAccInfo>> 	subAccInfoLocks;
+    private static ThreadLocal<Map<String, SubAccInfo>> subAccInfoLocks = new ThreadLocal<Map<String, SubAccInfo>>();
 
     /** RelSubCode和SubCode映射 */
-    private ThreadLocal<Map<String, String>>     	relSubCodeSubCodeMap;
+    private static ThreadLocal<Map<String, String>>     relSubCodeSubCodeMap = new ThreadLocal<Map<String, String>>();
 
     /** RelSubCode锁顺序 */
-    private ThreadLocal<List<String>>            	relSubAccCodeList;
+    private static ThreadLocal<List<String>>            relSubAccCodeList = new ThreadLocal<List<String>>();
+    
+    /** 是否多笔台账记账 */
+    private static ThreadLocal<Boolean>					isBatchAccount = new ThreadLocal<Boolean>() {
+		@Override
+		protected Boolean initialValue() {
+			return Boolean.FALSE;
+		}
+	};
 
-    private AccountContext() {
-        subAccInfoLocks = new ThreadLocal<Map<String, SubAccInfo>>();
-        relSubCodeSubCodeMap = new ThreadLocal<Map<String, String>>();
-        relSubAccCodeList = new ThreadLocal<List<String>>();
-    }
+    private AccountContext() {}
 
     /**
      * Returns the AccountContext specific to the current thread.
@@ -111,17 +112,17 @@ public class AccountContext {
         subAccInfoLocks.remove();
         relSubCodeSubCodeMap.remove();
         relSubAccCodeList.remove();
-        isBatchAccount=false;
+        isBatchAccount.remove();
     }
 
     
     public boolean isBatchAccount() {
-        return isBatchAccount;
+        return isBatchAccount.get();
     }
 
     
-    public void setBatchAccount(boolean isBatchAccount) {
-        this.isBatchAccount = isBatchAccount;
+    public void setBatchAccount(boolean isBatch) {
+    	isBatchAccount.set(isBatch);
     }
     
 }
