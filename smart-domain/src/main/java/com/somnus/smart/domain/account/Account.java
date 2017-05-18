@@ -473,9 +473,8 @@ public class Account {
 					public Object doInTransaction(TransactionStatus status) {
 						try {
 							doAccount(checkRed, ledgerDetail2);
-							accountContext.removeLocks();
 						} catch (Exception e) {
-							LOGGER.error("", e);
+							LOGGER.error(e.getMessage(), e);
 						}
 						return null;
 					}

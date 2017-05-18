@@ -13,21 +13,16 @@ public class AccountContext {
 	private static ThreadLocal<AccountContext>		accountContext = new ThreadLocal<AccountContext>();
 	
     /** 交易账户锁 */
-    private static ThreadLocal<Map<String, SubAccInfo>> subAccInfoLocks = new ThreadLocal<Map<String, SubAccInfo>>();
+    private Map<String, SubAccInfo> subAccInfoLocks;
 
     /** RelSubCode和SubCode映射 */
-    private static ThreadLocal<Map<String, String>>     relSubCodeSubCodeMap = new ThreadLocal<Map<String, String>>();
+    private Map<String, String>     relSubCodeSubCodeMap;
 
     /** RelSubCode锁顺序 */
-    private static ThreadLocal<List<String>>            relSubAccCodeList = new ThreadLocal<List<String>>();
+    private List<String>            relSubAccCodeList;
     
     /** 是否多笔台账记账 */
-    private static ThreadLocal<Boolean>					isBatchAccount = new ThreadLocal<Boolean>() {
-		@Override
-		protected Boolean initialValue() {
-			return Boolean.FALSE;
-		}
-	};
+    private Boolean					isBatchAccount;
 
     private AccountContext() {}
 
@@ -50,8 +45,8 @@ public class AccountContext {
      * 
      * @param map
      */
-    public void putSubAccInfoLocks(Map<String, SubAccInfo> map) {
-        subAccInfoLocks.set(map);
+    public void putSubAccInfoLocks(Map<String, SubAccInfo> subAccInfoLocks) {
+        this.subAccInfoLocks = subAccInfoLocks;
     }
 
     /**
@@ -60,7 +55,7 @@ public class AccountContext {
      * @return
      */
     public Map<String, SubAccInfo> getSubAccInfoLocks() {
-        return subAccInfoLocks.get();
+        return subAccInfoLocks;
     }
 
     /**
@@ -68,8 +63,8 @@ public class AccountContext {
      * 
      * @param map
      */
-    public void putRelSubCodeSubCodeMap(Map<String, String> map) {
-        relSubCodeSubCodeMap.set(map);
+    public void putRelSubCodeSubCodeMap(Map<String, String> relSubCodeSubCodeMap) {
+        this.relSubCodeSubCodeMap = relSubCodeSubCodeMap;
     }
 
     /**
@@ -78,7 +73,7 @@ public class AccountContext {
      * @return
      */
     public Map<String, String> getRelSubCodeSubCodeMap() {
-        return relSubCodeSubCodeMap.get();
+        return relSubCodeSubCodeMap;
     }
 
     /**
@@ -86,8 +81,8 @@ public class AccountContext {
      * 
      * @param list
      */
-    public void putRelSubAccCodeList(List<String> list) {
-        relSubAccCodeList.set(list);
+    public void putRelSubAccCodeList(List<String> relSubAccCodeList) {
+        this.relSubAccCodeList = relSubAccCodeList;
     }
 
     /**
@@ -96,33 +91,24 @@ public class AccountContext {
      * @return
      */
     public List<String> getRelSubAccCodeList() {
-        return relSubAccCodeList.get();
-    }
-    /**
-     * 线程变量Locks remove
-     */
-    public void removeLocks(){
-    	subAccInfoLocks.remove();
+        return relSubAccCodeList;
     }
 
     /**
      * 线程变量remove
      */
     public void remove() {
-        subAccInfoLocks.remove();
-        relSubCodeSubCodeMap.remove();
-        relSubAccCodeList.remove();
-        isBatchAccount.remove();
+    	accountContext.remove();
     }
 
     
     public boolean isBatchAccount() {
-        return isBatchAccount.get();
+        return isBatchAccount;
     }
 
     
-    public void setBatchAccount(boolean isBatch) {
-    	isBatchAccount.set(isBatch);
+    public void setBatchAccount(boolean isBatchAccount) {
+    	this.isBatchAccount = isBatchAccount;
     }
     
 }
