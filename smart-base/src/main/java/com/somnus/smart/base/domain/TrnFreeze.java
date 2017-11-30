@@ -3,15 +3,20 @@ package com.somnus.smart.base.domain;
 import java.math.BigDecimal;
 
 public class TrnFreeze  extends Entity {
-    private String freezeNo;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String freezeNo;
 
     private String appTranNo;
 
     private String merAccCode;
 
     private String ccyCode;
+    
     /** 冻结金额_冻结金额 */
     private BigDecimal tranAmt;
+    
     /** 已解冻金额_余额冻结时才起作用 */
     private BigDecimal thawAmt;
 

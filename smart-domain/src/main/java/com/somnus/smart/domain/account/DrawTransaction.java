@@ -7,14 +7,15 @@ import com.somnus.smart.base.domain.TrnDraw;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 出款交易流水
- */
+/** 出款交易流水 */
 public class DrawTransaction extends TrnDraw implements DomainModel<DrawTransaction, TrnDraw> {
 
 	private static final long serialVersionUID = 1L;
+	
 	/** dao */
 	private static TrnDrawDao dao;
+	
+	private DrawTransaction(){ }
 
 	/** 获取实例 */
 	public static DrawTransaction getInstance() {

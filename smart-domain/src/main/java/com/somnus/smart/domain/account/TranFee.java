@@ -7,16 +7,14 @@ import com.somnus.smart.base.domain.TcorTrnTranFee;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 收费附属
- */
+/** 收费附属 */
 public class TranFee extends TcorTrnTranFee implements DomainModel<TranFee, TcorTrnTranFee> {
 
+	private static final long serialVersionUID = 1L;
+	
+	private static TcorTrnTranFeeDao     dao;
 
-    private static TcorTrnTranFeeDao     dao;
-
-    public TranFee() {
-    }
+    private TranFee() { }
 
     public static TranFee getInstance() {
         return (TranFee) DomainHelper.getDomainInstance(TranFee.class);

@@ -10,17 +10,14 @@ import com.somnus.smart.base.domain.TrnTranIssued;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 下发审核附属
- */
+/** 下发审核附属  */
 public class TranIssued extends TrnTranIssued implements DomainModel<TranIssued, TrnTranIssued> {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private static TrnTranIssuedDao   dao;
 
-    public TranIssued() {
-    }
+	private TranIssued() { }
 
     public static TranIssued getInstance() {
         return (TranIssued) DomainHelper.getDomainInstance(TranIssued.class);

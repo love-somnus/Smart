@@ -25,7 +25,6 @@ import com.somnus.smart.message.account.AccountResponse;
 import com.somnus.smart.message.custom.FeeChargeRequest;
 import com.somnus.smart.service.BasBizService;
 import com.somnus.smart.service.common.BasConstants;
-import com.somnus.smart.service.common.BusinessUtil;
 import com.somnus.smart.service.common.Constants;
 import com.somnus.smart.service.common.MessageUtil;
 import com.somnus.smart.service.common.enums.AccountType;
@@ -62,7 +61,7 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -75,7 +74,7 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
             // 4、收费同步记账
             feeChargeService.feeChargeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_FEE_CHARGE);
             // 5、返回费用收取处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -99,7 +98,7 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -120,13 +119,13 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
             if (availableBal.compareTo(request.getTranAmt()) < 0) {
                 TrnTransaction trnTransaction = feeChargeService.totalFeeChargeDeal(transaction, cusSubaccinfo.getSubAccCode());
                 // 返回费用收取处理结果
-                BusinessUtil.setRepMsg(repMsg, trnTransaction);
+                MessageUtil.setRepMsg(repMsg, trnTransaction);
                 return repMsg;
             }
             // 6、收费同步记账
             feeChargeService.unFeeChargeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_UNFEE_CHARGE);
             // 7、返回费用收取处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文

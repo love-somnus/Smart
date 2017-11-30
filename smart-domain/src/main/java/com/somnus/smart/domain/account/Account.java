@@ -21,9 +21,7 @@ import com.somnus.smart.service.common.BasConstants;
 import com.somnus.smart.support.exceptions.BizException;
 import com.somnus.smart.support.util.DateUtil;
 
-/**
- * 记账
- */
+/** 记账 */
 public class Account {
 	/** Logger */
 	private static Logger LOGGER = LoggerFactory.getLogger(Account.class);
@@ -37,8 +35,7 @@ public class Account {
 	/** spring 事务模板 */
 	private static TransactionTemplate transactionTemplate;
 
-	public Account() {
-	}
+	private Account() { }
 
 	public static Account getInstance() {
 		return (Account) DomainHelper.getDomainInstance(Account.class);
@@ -117,9 +114,7 @@ public class Account {
 	 * @throws Exception
 	 */
 	@Transactional
-	public void addAccount(Transaction transaction, String entryKey,
-			Date accDate, boolean checkRed, AccountCallBack callBack)
-			throws Exception {
+	public void addAccount(Transaction transaction, String entryKey, Date accDate, boolean checkRed, AccountCallBack callBack)throws Exception {
 		try {
 			// 设置批量记账
 			accountContext.setBatchAccount(true);
@@ -148,7 +143,9 @@ public class Account {
 			transaction.setAccStatus(BasConstants.ACC_STATUS_SUCCESS);
 			transaction.update();
 			// 记账回调
-			callBack.callBack();
+			if (callBack != null) {
+				callBack.callBack();
+			}
 		} catch (Exception e) {
 			throw e;
 		} finally {

@@ -2,7 +2,7 @@ package com.somnus.smart.message.account;
 
 import java.util.Date;
 
-import com.somnus.smart.message.Message;
+import com.somnus.smart.message.Response;
 
 
 /**
@@ -11,10 +11,14 @@ import com.somnus.smart.message.Message;
  * @author IH745
  * @version 1.0 13-10-9
  */
-public class AccountResponse extends Message {
+public class AccountResponse extends Response {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String appTranNo;
+	
 	private String accTranNo;
+	
 	private Date accDate;
 
 	public String getAppTranNo() {

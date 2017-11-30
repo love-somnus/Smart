@@ -7,17 +7,14 @@ import com.somnus.smart.base.domain.TrnTranVoucher;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 凭证附属
- */
+/** 凭证附属 */
 public class TranVoucher extends TrnTranVoucher implements DomainModel<TranVoucher, TrnTranVoucher> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnTranVoucherDao  dao;
 
-    public TranVoucher() {
-    }
+	private TranVoucher() { }
 
     public static TranVoucher getInstance() {
         return (TranVoucher) DomainHelper.getDomainInstance(TranVoucher.class);

@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
 public class InfSubdict extends Entity {
-    private String subCode1st;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String subCode1st;
 
     private String subName1st;
 

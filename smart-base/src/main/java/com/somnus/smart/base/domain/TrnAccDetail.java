@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class TrnAccDetail extends Entity {
 
-	private static final long serialVersionUID = 8316185250243762683L;
+	private static final long serialVersionUID = 1L;
+	
     private String accDetailNo;
 
     private String accTranNo;

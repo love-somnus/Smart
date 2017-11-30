@@ -11,10 +11,7 @@ import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 import com.somnus.smart.support.util.DateUtil;
 
-
-/**
- * 分账户明细
- */
+/** 分账户明细  */
 public class AccDetail extends TrnAccDetail implements DomainModel<AccDetail, TrnAccDetail> {
 
 	private static final long serialVersionUID = 1L;
@@ -27,8 +24,7 @@ public class AccDetail extends TrnAccDetail implements DomainModel<AccDetail, Tr
 
     private final static String    IDV_SUB_ACC_CODE__PREFIX = "3";
 
-    public AccDetail() {
-    }
+    private AccDetail() { }
 
     public static AccDetail getInstance() {
         return (AccDetail) DomainHelper.getDomainInstance(AccDetail.class);

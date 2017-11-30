@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrnTransaction  extends Entity {
-    private String accTranNo;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String accTranNo;
 
     private String sysCode;
 

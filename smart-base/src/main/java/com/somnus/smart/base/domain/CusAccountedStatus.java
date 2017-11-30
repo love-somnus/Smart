@@ -2,11 +2,9 @@ package com.somnus.smart.base.domain;
 
 import java.util.Date;
 
-public class CusAccountedStatus  extends Entity {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -4585345432340639578L;
+public class CusAccountedStatus extends Entity {
+
+	private static final long serialVersionUID = 1L;
 
 	private String merAccCode;
 

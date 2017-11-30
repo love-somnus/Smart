@@ -1,25 +1,27 @@
 package com.somnus.smart.base.domain;
 
-/**
- * 冲正流水附属表
- * 
- * @author Administrator
- * @version $Id: TrnTranReserve.java, v 0.1 2014-10-17 下午03:23:00 Administrator Exp $
- */
 public class TrnTranReverse extends Entity {
-    private static final long serialVersionUID = 1L;
-    /** 冲正附属流水号 */
+	
+	private static final long serialVersionUID = 1L;
+
+	/** 冲正附属流水号 */
     private String            reverseTranNo;
+    
     /** 记账流水号 */
     private String            accTranNo;
+    
     /** 状态 0：受理中 1 已冲正 */
     private String            status;
+    
     /** 创建时间 */
     private String            createTime;
+    
     /** 创建人 */
     private String            createBy;
+    
     /** 更新时间 */
     private String            modifyTime;
+    
     /** 更新人 */
     private String            modifyBy;
 

@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrnLedgerDetail extends Entity {
-
-	private static final long serialVersionUID = -4533265044901919415L;
+	
+	private static final long serialVersionUID = 1L;
+	
     private String ledTranNo;
 
     private String accEntryCode;

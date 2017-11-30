@@ -61,8 +61,8 @@ public class DrawWriteOffServiceImpl implements DrawWriteOffService {
     @Override
     @Transactional
     public void drawWriteOffSynAccount(Transaction transaction,final DrawTransaction drawTransaction,String entryKey,boolean checkRed) throws Exception {
-        Account account=Account.getInstance();
-        AccountCallBack callBack=new AccountCallBack() {
+        Account account = Account.getInstance();
+        account.synAccountNoTransaction(transaction, entryKey, transaction.getAccDate(), checkRed, new AccountCallBack() {
             
             @Override
             public Object callBack() throws Exception {
@@ -73,7 +73,6 @@ public class DrawWriteOffServiceImpl implements DrawWriteOffService {
                 drawTransaction.update();
                 return drawTransaction;
             }
-        };
-        account.synAccountNoTransaction(transaction, entryKey, transaction.getAccDate(), checkRed, callBack);
+        });
     }
 }

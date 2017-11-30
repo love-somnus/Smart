@@ -7,17 +7,14 @@ import com.somnus.smart.base.domain.TrnTransfer;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 划款交易流水
- */
+/** 划款交易流水 */
 public class TransferTransaction extends TrnTransfer implements DomainModel<TransferTransaction, TrnTransfer> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnTransferDao     dao;
 
-    public TransferTransaction() {
-    }
+	private TransferTransaction() { }
 
     public static TransferTransaction getInstance() {
         return (TransferTransaction) DomainHelper.getDomainInstance(TransferTransaction.class);

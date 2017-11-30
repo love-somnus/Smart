@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
-public class TcorTrnTranFee {
-    private String feeTranNo;
+public class TcorTrnTranFee extends Entity {
+	
+	private static final long serialVersionUID = 1L;
+
+	private String feeTranNo;
 
     private String accTranNo;
 

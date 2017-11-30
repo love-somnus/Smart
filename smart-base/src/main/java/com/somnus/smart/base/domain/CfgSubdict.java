@@ -1,6 +1,9 @@
 package com.somnus.smart.base.domain;
 
-public class CfgSubdict {
+public class CfgSubdict extends Entity {
+
+	private static final long serialVersionUID = 1L;
+	
     private String subCode;
 
     private String subName;

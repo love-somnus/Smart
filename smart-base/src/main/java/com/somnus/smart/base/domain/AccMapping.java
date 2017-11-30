@@ -1,21 +1,24 @@
 package com.somnus.smart.base.domain;
 
-/** 
- * @description: TODO 
- * @author Somnus
- * date 2015年2月6日 下午6:04:44  
- */
-public class AccMapping {
+public class AccMapping extends Entity {
+
+	private static final long serialVersionUID = 1L;
+	
 	/**专用账户号 */
 	private String speAcctCode;
+	
 	/**标准账户号 */
 	private String stdAcctCode;
+	
 	/**创建时间 */
 	private String createTime;
+	
 	/**创建人 */
 	private String createBy;
+	
 	/**更新时间 */
 	private String modifyTime;
+	
 	/**更新人 */
 	private String modifyBy;
 	public String getSpeAcctCode() {

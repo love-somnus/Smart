@@ -9,10 +9,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @version 1.0 13-9-29
  */
 public class Message implements java.io.Serializable {
-    /**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	//发送系统编号
 	@NotEmpty
     private String sysCode;

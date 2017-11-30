@@ -151,17 +151,14 @@ public class ProtocolDrawServiceImpl implements ProtocolDrawService {
 				merAccount, drawAmt, merMerchant);
 		Transaction transaction = createTransaction(drawTransaction);
 		Account account = Account.getInstance();
-		AccountCallBack callBack = new AccountCallBack() {
+		account.synAccountNoTransaction(transaction, DrawConstants.ENTRY_KEY_PROTOCOLDRAW_BLN_PRE, accDate, false,new AccountCallBack() {
 
 			@Override
 			public Object callBack() throws Exception {
 				drawTransaction.save();
 				return drawTransaction;
 			}
-		};
-		account.synAccountNoTransaction(transaction,
-				DrawConstants.ENTRY_KEY_PROTOCOLDRAW_BLN_PRE, accDate, false,
-				callBack);
+		});
 	}
 
 	@Transactional

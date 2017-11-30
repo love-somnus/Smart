@@ -113,7 +113,7 @@ public class RefundTransfer extends CommonTransfer{
 	}
 	
 	public static Transaction msgToTransaction(IpsRefundRequest request) {
-		Transaction transaction = new Transaction();
+		Transaction transaction = Transaction.getInstance();
 		BeanUtils.copyProperties(request, transaction);
 		transaction.setMachineNo(request.getFrontNo());
 		transaction.setCusTranNo(request.getMerBillNo());
@@ -123,7 +123,7 @@ public class RefundTransfer extends CommonTransfer{
 		return transaction;
 	}
 	public static Transaction msgToTransaction(AutoRefundRequest request) {
-		Transaction trntransaction = new Transaction();
+		Transaction trntransaction = Transaction.getInstance();
 		BeanUtils.copyProperties(request, trntransaction);
 		trntransaction.setMachineNo(request.getFrontNo());
 		trntransaction.setCusTranNo(request.getMerBillNo());

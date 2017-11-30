@@ -7,18 +7,14 @@ import com.somnus.smart.base.domain.TrnRefund;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 退款交易流水
- */
+/** 退款交易流水 */
 public class RefundTransaction extends TrnRefund implements DomainModel<RefundTransaction, TrnRefund> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnRefundDao       dao;
 
-
-    public RefundTransaction() {
-    }
+	private RefundTransaction() { }
 
     public static RefundTransaction getInstance() {
         return (RefundTransaction) DomainHelper.getDomainInstance(RefundTransaction.class);

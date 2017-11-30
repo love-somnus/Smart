@@ -84,10 +84,8 @@ public class AddAccountResourceImpl implements AddAccountResource {
         return repMsg;
     }
 
-    private void setRepMsg(AddAccountResponse repMsg, int totalCount, int successCount,
-                           int failCount) {
+    private void setRepMsg(AddAccountResponse repMsg, int totalCount, int successCount, int failCount) {
         MessageUtil.createCommMsg(repMsg);
-        repMsg
-            .setRepMsg("处理总条数：" + totalCount + " ，处理成功条数：" + successCount + " ，处理失败条数：" + failCount);
+        repMsg.setRepMsg("处理总条数：" + totalCount + " ，处理成功条数：" + successCount + " ，处理失败条数：" + failCount);
     }
 }

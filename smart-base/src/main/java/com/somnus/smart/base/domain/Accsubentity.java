@@ -1,6 +1,8 @@
 package com.somnus.smart.base.domain;
 
-public class Accsubentity {
+public class Accsubentity extends Entity {
+
+	private static final long serialVersionUID = 1L;
 	
 	private String accType;
 

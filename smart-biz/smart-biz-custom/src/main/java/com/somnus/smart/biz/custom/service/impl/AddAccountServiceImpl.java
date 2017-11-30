@@ -1,5 +1,6 @@
 package com.somnus.smart.biz.custom.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.somnus.smart.base.domain.DiffTraninfo;
 import com.somnus.smart.biz.custom.service.AddAccountService;
 import com.somnus.smart.domain.account.Account;
-import com.somnus.smart.domain.account.AccountCallBack;
 import com.somnus.smart.domain.account.LedgerDetail;
 import com.somnus.smart.domain.account.Transaction;
 import com.somnus.smart.service.BasBizService;
@@ -33,60 +33,41 @@ public class AddAccountServiceImpl implements AddAccountService {
     @Override
     @Transactional
     public void addAccount(String errNo) throws Exception {
-        if (errNo == null || "".equals(errNo.trim())) {
-            throw new BizException(msa.getMessage(MsgCodeList.ERROR_302026, 
-            		new Object[] { }));
+        if (StringUtils.isBlank(errNo)) {
+            throw new BizException(msa.getMessage(MsgCodeList.ERROR_302026, new Object[] {}));
         }
         DiffTraninfo diffTraninfo = basBizService.selectDiffTraninfoByPrimaryKey(errNo);
         
-        if(diffTraninfo==null){
-            throw new BizException(msa.getMessage(MsgCodeList.ERROR_302027, 
-            		new Object[] { }));
+        if(diffTraninfo == null){
+            throw new BizException(msa.getMessage(MsgCodeList.ERROR_302027, new Object[] {}));
         }
-        log.info(">>>> 错误流水: {}开始", new Object[] { diffTraninfo.getErrTranNo() });
         if(BasConstants.DIFF_TRANINFO_STATUS_YES.equals(diffTraninfo.getStatus())){
+        	log.warn("账务核对差错表处理状态 1:已处理>>>> 错误流水: {}", new Object[] { diffTraninfo.getErrTranNo() });
             return;
         }
-        try {
-            if (BasConstants.DIFF_TRANINFO_ERR_KIND_TRAN.equals(diffTraninfo.getErrKind())) {
-                Transaction transaction = Transaction.selectByAccTranNo(diffTraninfo
-                    .getErrTranNo());
-                if (transaction != null) {
-                    Account account=Account.getInstance();
-                    AccountCallBack callBack=new AccountCallBack() {
-                        
-                        @Override
-                        public Object callBack() {
-                            return null;
-                        }
-                    };
-                    account.addAccount(transaction, BasConstants.ENTRY_KEY_INCOME_PRE + transaction.getBlnMode()
-                                + transaction.getFeeFlag() + transaction.getFeeStlMode(), transaction.getAccDate(), false, callBack);
-                } else {
-                    throw new BizException(msa.getMessage(MsgCodeList.ERROR_302028, 
-                    		new Object[] {diffTraninfo.getErrTranNo() }));
-                }
-            } else if (BasConstants.DIFF_TRANINFO_ERR_KIND_LEDGER.equals(diffTraninfo.getErrKind())) {
-                LedgerDetail ledgerDetail = LedgerDetail.getInstance();
-                ledgerDetail = ledgerDetail.selectByPrimaryKey(diffTraninfo.getErrTranNo());
-                if (ledgerDetail != null) {
-                    ledgerDetail.setAccDate(basBizService.getSystemAccDate());
-                    Account account=Account.getInstance();
-                    account.addAccount(false, ledgerDetail);
-                } else {
-                    throw new BizException(msa.getMessage(MsgCodeList.ERROR_302029, 
-                    		new Object[] {diffTraninfo.getErrTranNo() }));
-                }
+        if (BasConstants.DIFF_TRANINFO_ERR_KIND_TRAN.equals(diffTraninfo.getErrKind())) {
+            Transaction transaction = Transaction.selectByAccTranNo(diffTraninfo.getErrTranNo());
+            if (transaction != null) {
+                Account account = Account.getInstance();
+                String 	entryKey = BasConstants.ENTRY_KEY_INCOME_PRE + transaction.getBlnMode()
+                        + transaction.getFeeFlag() + transaction.getFeeStlMode();
+                account.addAccount(transaction, entryKey, transaction.getAccDate(), false, null);
+            } else {
+                throw new BizException(msa.getMessage(MsgCodeList.ERROR_302028, new Object[] {diffTraninfo.getErrTranNo()}));
             }
-            diffTraninfo.setStatus(BasConstants.DIFF_TRANINFO_STATUS_YES);
-            diffTraninfo.setModifyTime(DateUtil.getCurrentTimeStamp());
-            basBizService.updateDiffTraninfoByPrimaryKey(diffTraninfo);
-        } catch (BizException e) {
-            log.error("流水号：" + diffTraninfo.getErrTranNo() + "不记账异常，", e);
-            throw e;
-        } catch (Exception e) {
-            log.error("流水号：" + diffTraninfo.getErrTranNo() + "不记账异常，", e);
-            throw e;
+        } else if (BasConstants.DIFF_TRANINFO_ERR_KIND_LEDGER.equals(diffTraninfo.getErrKind())) {
+            LedgerDetail ledgerDetail = LedgerDetail.getInstance();
+            ledgerDetail = ledgerDetail.selectByPrimaryKey(diffTraninfo.getErrTranNo());
+            if (ledgerDetail != null) {
+                ledgerDetail.setAccDate(basBizService.getSystemAccDate());
+                Account account = Account.getInstance();
+                account.addAccount(false, ledgerDetail);
+            } else {
+                throw new BizException(msa.getMessage(MsgCodeList.ERROR_302029, new Object[] {diffTraninfo.getErrTranNo()}));
+            }
         }
+        diffTraninfo.setStatus(BasConstants.DIFF_TRANINFO_STATUS_YES);
+        diffTraninfo.setModifyTime(DateUtil.getCurrentTimeStamp());
+        basBizService.updateDiffTraninfoByPrimaryKey(diffTraninfo);
     }
 }

@@ -96,8 +96,7 @@ public class AccQueryResourceImpl implements AccQueryResource {
 	@Path("/queryIssuedAccDetail")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public IssuedAccDetailQueryResponse queryIssuedAccDetail(
-			IssuedAccDetailQueryRequest request) {
+	public IssuedAccDetailQueryResponse queryIssuedAccDetail(IssuedAccDetailQueryRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		IssuedAccDetailQueryResponse response = new IssuedAccDetailQueryResponse();
 		try {

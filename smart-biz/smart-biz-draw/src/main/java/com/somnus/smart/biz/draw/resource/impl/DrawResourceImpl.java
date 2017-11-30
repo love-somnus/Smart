@@ -49,7 +49,7 @@ public class DrawResourceImpl implements DrawResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -73,7 +73,7 @@ public class DrawResourceImpl implements DrawResource {
             // 7、同步记账
             drawService.drawSynAccount(transaction, entryKey, transaction.getAccDate(), true, tranDraw, drawTransaction);
 
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -85,13 +85,6 @@ public class DrawResourceImpl implements DrawResource {
         }
         log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
         return repMsg;
-    }
-
-    private void setRepMsg(AccountResponse repMsg, TrnTransaction trntransaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(trntransaction.getAccDate());
-        repMsg.setAccTranNo(trntransaction.getAccTranNo());
-        repMsg.setAppTranNo(trntransaction.getAppTranNo());
     }
 
 }

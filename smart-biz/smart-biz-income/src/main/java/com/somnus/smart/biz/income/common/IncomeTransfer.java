@@ -20,7 +20,7 @@ public class IncomeTransfer extends CommonTransfer {
      * @param incomeRequest
      */
     public static Transaction msgToTransaction(IncomeRequest incomeRequest) {
-        Transaction transaction = new Transaction();
+        Transaction transaction = Transaction.getInstance();
         BeanUtils.copyProperties(incomeRequest, transaction);
         msgAdditional(incomeRequest, transaction);
         incomeSet(transaction);
@@ -43,7 +43,7 @@ public class IncomeTransfer extends CommonTransfer {
     }
 
     public static Transaction msgToTransaction(IpsPayRequest request) {
-        Transaction transaction = new Transaction();
+        Transaction transaction = Transaction.getInstance();
         BeanUtils.copyProperties(request, transaction);
         transaction.setMachineNo(request.getFrontNo());
         transaction.setCusTranNo(request.getMerBillNo());

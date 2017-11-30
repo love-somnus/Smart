@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PrdRecognizeDelay extends Entity {
-    private BigDecimal delayId;
+	
+	private static final long serialVersionUID = 1L;
+
+	private BigDecimal delayId;
 
     private String systemCode;
 

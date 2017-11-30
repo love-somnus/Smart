@@ -3,10 +3,8 @@ package com.somnus.smart.base.domain;
 import java.math.BigDecimal;
 
 public class TrnTranVoucher extends Entity {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -7344545811572257851L;
+	
+	private static final long serialVersionUID = 1L;
 
 	private String vouTranNo;
 

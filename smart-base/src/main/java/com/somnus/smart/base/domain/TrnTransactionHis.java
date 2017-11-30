@@ -3,8 +3,11 @@ package com.somnus.smart.base.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class TrnTransactionHis {
-    private String accTranNo;
+public class TrnTransactionHis  extends Entity {
+	
+	private static final long serialVersionUID = 1L;
+
+	private String accTranNo;
 
     private String sysCode;
 

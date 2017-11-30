@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrnTranRefund extends Entity {
+	
 	private static final long serialVersionUID = 1L;
 
 	private String refTranNo;

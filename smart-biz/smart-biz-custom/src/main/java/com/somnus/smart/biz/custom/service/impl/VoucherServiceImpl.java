@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +29,6 @@ import com.somnus.smart.support.util.ValidateUtil;
 
 @Service
 public class VoucherServiceImpl implements VoucherService {
-
-    private final Logger          log = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private BasBizService         basBizService;

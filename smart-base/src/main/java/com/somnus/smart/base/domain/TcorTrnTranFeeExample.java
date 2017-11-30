@@ -3,7 +3,10 @@ package com.somnus.smart.base.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TcorTrnTranFeeExample {
+public class TcorTrnTranFeeExample extends Entity {
+
+	private static final long serialVersionUID = 1L;
+	
     protected String orderByClause;
 
     protected boolean distinct;

@@ -4,104 +4,156 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class MerMerchant extends Entity  {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/** 商户ID*/
     private BigDecimal merId;
+    
     /** 商户号_商户唯一标识*/
     private String merCode;
+    
     /** POS商户号*/
     private String merCodePos;
+    
     /** 商户类型_1：企业 2：个人 3：个体工商户*/
     private String merType;
+    
     /** 商户名称*/
     private String merName;
+    
     /** 商户简称*/
     private String shortName;
+    
     /** 网关名称*/
     private String gwName;
+    
     /** 办公地址*/
     private String officeAddr;
+    
     /** 商户官方网站*/
     private String officialWebsite;
+    
     /** 商户邮箱*/
     private String merMail;
+    
     /** 一级行业分类*/
     private String industryL1;
+    
     /** 二级行业分类*/
     private String industryL2;
+    
     /** 三级行业分类*/
     private String industryL3;
+    
     /** MCC码*/
     private String mcc;
+    
     /** 商户等级*/
     private BigDecimal merLevel;
+    
     /** 商户等级设置理由*/
     private String merLevelReason;
+    
     /** 风险等级*/
     private String risk;
+    
     /** 风险级别设置理由*/
     private String riskReason;
+    
     /** 是否按月开发票*/
     private Short needInvoice;
+    
     /** 商户来源方式*/
     private String merSource;
+    
     /** 推荐详情*/
     private String recommendDetail;
+    
     /** 所属分公司编号*/
     private String companyCode;
+    
     /** 签约代表工号*/
     private String employeeNo;
+    
     /** 签约代表手机号*/
     private String employeePhone;
+    
     /** 代理商编号*/
     private String agencyCode;
+    
     /** 所属国家*/
     private String merCountry;
+    
     /** 所属省份*/
     private String merProvince;
+    
     /** 所属城市*/
     private String merCity;
+    
     /** 法人姓名*/
     private String legalPerson;
+    
     /** 法人证件类型*/
     private String lpCerType;
+    
     /** 法人证件号码*/
     private String lpCerNo;
+    
     /** 法人证件有效日期*/
     private String lpCerVldTo;
+    
     /** 营业执照号码*/
     private String licenseNo;
+    
     /** 营业执照号码有效日期*/
     private String licenseVldTo;
+    
     /** 主营业务*/
     private String mainBiz;
+    
     /** 注册地址*/
     private String regAddr;
+    
     /** 注册资本*/
     private Long regCapital;
+    
     /** 实收资本*/
     private Long realCapital;
+    
     /** 税证号码*/
     private String taxNo;
+    
     /** 税证有效日期*/
     private String taxVldTo;
+    
     /** 组织机构代码*/
     private String orgCode;
+    
     /** 组织机构代码证有效日期*/
     private String orgVldTo;
+    
     /** 备注*/
     private String remark;
+    
     /** 版本*/
     private Integer version;
+    
     /** 版本状态_1:开启/开通/有效 2:关闭/无效*/
     private String status;
+    
     /** 操作标志_0:最终有效 1:被删除 2:被新版本替换*/
     private String operFlag;
+    
     /** 生效日期*/
     private String effectDate;
+    
     /** 失效日期*/
     private String loseEffectDate;
+    
     /** 修改人*/
     private String modifyBy;
+    
     /** 修改时间*/
     private Date modifyTime;
 

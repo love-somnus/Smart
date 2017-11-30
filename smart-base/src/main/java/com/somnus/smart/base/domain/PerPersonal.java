@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
 public class PerPersonal extends Entity {
-    private String userAccCode;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String userAccCode;
 
     private String userAccName;
 

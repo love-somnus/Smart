@@ -1,42 +1,63 @@
 package com.somnus.smart.base.domain;
 
-public class PerAccount {
+public class PerAccount extends Entity {
+
+	private static final long serialVersionUID = 1L;
+	
 	/** 个人交易账户号 */
 	private String acctCode;
+	
 	/** 个人交易账户名称 */
 	private String acctName;
+	
 	/** 登录用户名 */
 	private String userId;
+	
 	/** 绑定邮箱 */
 	private String email;
+	
 	/** 绑定手机 */
 	private String mobile;
+	
 	/** 开户银行 */
 	private String bankCode;
+	
 	/** 开户银行名称 */
 	private String bankName;
+	
 	/** 银行账号 */
 	private String bankAcctNo;
+	
 	/** 银行账号名称 */
 	private String bankAcctName;
+	
 	/** 货币码 */
 	private String ccyCode;
+	
 	/** 会员等级 */
 	private String level;
+	
 	/** 账户状态 */
 	private String accStatus;
+	
 	/** 资金状态 */
 	private String fundStatus;
+	
 	/** 开户日期 */
 	private String openDate;
+	
 	/** 开户人 */
 	private String openBy;
+	
 	/** 创建时间 */
 	private String createTime;
+	
 	/** 创建人 */
 	private String createBy;
+	
 	/** 更新时间 */
 	private String modifyTime;
+	
 	/** 更新人 */
 	private String modifyBy;
 	public String getAcctCode() {

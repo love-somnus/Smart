@@ -4,60 +4,90 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class CusSubaccinfo extends Entity {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/** 功能账户号_标识位（1）+ 币种（3）+科目（2）+ 序号（10）*/
     private String subAccCode;
+    
     /** 功能账户名*/
     private String subAccName;
+    
     /** 账务日期*/
     private Date accDate;
+    
     /** 交易账户*/
     private String merAccCode;
+    
     /** 一级科目_所属一级科目*/
     private String subCode;
+    
     /** 科目号_实际科目*/
     private String relSubCode;
+    
     /** 余额方向_D-借方 C-贷方*/
     private String balDir;
+    
     /** 币种代码_156 人民币*/
     private String ccyCode;
+    
     /** 当前余额*/
     private BigDecimal curBal;
+    
     /** 可用余额*/
     private BigDecimal availBal;
+    
     /** 业务冻结金额_业务冻结 【退款冻结、风控冻结】*/
     private BigDecimal bizFreezeBal;
+    
     /** 监管冻结金额_监管冻结*/
     private BigDecimal magFreezeBal;
+    
     /** 应付冻结金额_应付冻结*/
     private BigDecimal payableFreezeBal;
+    
     /** 期初余额*/
     private BigDecimal initialBal;
+    
     /** 上日期初余额_上日期初*/
     private BigDecimal lastInitialBal;
+    
     /** 借方发生额*/
     private BigDecimal debitAmt;
+    
     /** 贷方发生额*/
     private BigDecimal creditAmt;
+    
     /** 账户类型_记收 ，流动资金 。。。。。 参见 账户类型定义*/
     private String accType;
+    
     /** 是否可透支_0：不可透支 1：可透支*/
     private String overFlag;
+    
     /** 帐户状态_0：正常 1：销户 2:冻结*/
     private String accStatus;
+    
     /** 开户日期*/
     private Date openDate;
+    
     /** 开户人*/
     private String openBy;
+    
     /** 销户日期*/
     private Date closeDate;
+    
     /** 销户人*/
     private String closeBy;
+    
     /** 创建时间_系统时间 yyyy-MM-dd HH24:MI:SS*/
     private String createTime;
+    
     /** 创建人_系统： CORE  外围 报文中的 operator 字段*/
     private String createBy;
+    
     /** 更新时间_系统时间 yyyy-MM-dd HH24:MI:SS*/
     private String modifyTime;
+    
     /** 更新人_系统： CORE  外围 报文中的 operator 字段*/
     private String modifyBy;
 

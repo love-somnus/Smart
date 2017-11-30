@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
 public class DaySystem extends Entity {
-    private String dayId;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String dayId;
 
     private String cutCode;
 

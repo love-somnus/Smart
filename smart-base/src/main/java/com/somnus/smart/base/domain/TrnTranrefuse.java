@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
-public class TrnTranrefuse {
-    private String refTranNo;
+public class TrnTranrefuse  extends Entity {
+	
+	private static final long serialVersionUID = 1L;
+
+	private String refTranNo;
 
     private String accTranNo;
 

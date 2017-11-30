@@ -1,6 +1,7 @@
 package com.somnus.smart.base.domain;
 
 public class TrnTranDraw extends Entity {
+	
 	private static final long serialVersionUID = 1L;
 
 	private String draTranNo;

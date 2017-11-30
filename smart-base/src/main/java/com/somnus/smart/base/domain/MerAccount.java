@@ -4,66 +4,99 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class MerAccount extends Entity {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/** 账户ID*/
     private Long acctId;
+    
     /** 交易账户号*/
     private String acctCode;
+    
     /** 商户号*/
     private String merCode;
+    
     /** 交易账户名*/
     private String acctName;
+    
     /** 币种_156：人民币*/
     private String currency;
+    
     /** 开户银行*/
     private String bankCode;
+    
     /** 开户银行名称*/
     private String bankName;
+    
     /** 银行联行号*/
     private String bankKey;
+    
     /** 分行编号_开户行编号*/
     private String branchCode;
+    
     /** 分行名称_开户行名称*/
     private String branchName;
+    
     /** 商户银行账号*/
     private String bankAcctNo;
+    
     /** 商户银行户名*/
     private String bankAcctName;
+    
     /** 清算类型_1:对公 2：对私*/
     private String stlType;
+    
     /** 余额下限*/
     private BigDecimal balFloor;
+    
     /** 是否开通协议划款_0：否 1：是*/
     private Short autoTransfer;
+    
     /** 最低划款金额*/
     private BigDecimal minTransfer;
+    
     /** 划款周期_1:工作日划款 2:一周两次 3:一周一次*/
     private String transferPeriod;
+    
     /** 是否自动出款_0：否 1：是*/
     private String isAutoStl;
+    
     /** 开始划款日期*/
     private String beginTransfer;
+    
     /** 出款优先级_1,2,3*/
     private Integer transferPriority;
+    
     /** 是否允许收款_0：否 1：是*/
     private String allowIn;
+    
     /** 是否允许出款_0：否 1：是*/
     private String allowOut;
+    
     /** 出款标志_区分是风控的冻结还是公安的冻结 二进制“01”表示风控允许出款；二进制“10”表示公安允许出款；“11”表示都允许出款；“00”表示都不允许出款*/
     private String outFlag;
+    
     /** 备注*/
     private String remark;
+    
     /** 版本*/
     private Integer version;
+    
     /** 版本状态_1:开启/开通/有效 2:关闭/无效*/
     private String status;
+    
     /** 操作标志_0:最终有效 1:被删除 2:被新版本替换*/
     private String operFlag;
+    
     /** 生效日期*/
     private String effectDate;
+    
     /** 失效日期*/
     private String loseEffectDate;
+    
     /** 修改人*/
     private String modifyBy;
+    
     /** 修改时间*/
     private Date modifyTime;
 

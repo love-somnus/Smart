@@ -183,10 +183,10 @@ public class RefuseServiceImpl implements RefuseService {
     }
 
     @Transactional
-    private void refuseAccountDo(final Transaction oriTransaction, final Transaction transaction, final TranRefuse tranRefuse, String entryKey)
-                                                                                                                                               throws Exception {
+    private void refuseAccountDo(final Transaction oriTransaction, 
+    		final Transaction transaction, final TranRefuse tranRefuse, String entryKey) throws Exception {
         Account account = Account.getInstance();
-        AccountCallBack callBack = new AccountCallBack() {
+        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, new AccountCallBack() {
 
             @Override
             public Object callBack() throws Exception {
@@ -214,8 +214,7 @@ public class RefuseServiceImpl implements RefuseService {
                 oriTransaction.update();
                 return drawTransaction;
             }
-        };
-        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, callBack);
+        });
     }
 
     @Override

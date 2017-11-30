@@ -13,7 +13,6 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.biz.custom.common.CusConstants;
 import com.somnus.smart.biz.custom.resource.ReticketResource;
 import com.somnus.smart.biz.custom.service.ReticketService;
@@ -49,7 +48,7 @@ public class ReticketResourceImpl implements ReticketResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -72,7 +71,7 @@ public class ReticketResourceImpl implements ReticketResource {
             } else {
                 throw new BizException(msa.getMessage(MsgCodeList.ERROR_301008, new Object[] { "交易类型" }));
             }
-            setRepMsg(repMsg, trntransaction);
+            MessageUtil.setRepMsg(repMsg, trntransaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -86,10 +85,4 @@ public class ReticketResourceImpl implements ReticketResource {
         return repMsg;
     }
 
-    private void setRepMsg(ReticketResponse repMsg, TrnTransaction trntransaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(trntransaction.getAccDate());
-        repMsg.setAccTranNo(trntransaction.getAccTranNo());
-        repMsg.setAppTranNo(trntransaction.getAppTranNo());
-    }
 }

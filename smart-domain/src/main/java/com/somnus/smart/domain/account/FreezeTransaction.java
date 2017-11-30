@@ -10,16 +10,14 @@ import com.somnus.smart.base.domain.TrnFreeze;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 冻结交易流水
- */
+/** 冻结交易流水 */
 public class FreezeTransaction extends TrnFreeze implements DomainModel<FreezeTransaction, TrnFreeze> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnFreezeDao       dao;
 
-    public FreezeTransaction() {
+	private FreezeTransaction() {
     }
 
     public static FreezeTransaction getInstance() {

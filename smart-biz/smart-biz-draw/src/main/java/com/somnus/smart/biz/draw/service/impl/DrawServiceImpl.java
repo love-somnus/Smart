@@ -122,7 +122,8 @@ public class DrawServiceImpl implements DrawService {
             throw new BizException("交易流水、账务日期、entryKey、出款附属流水、出款交易流水不能为空！");
         }
         //出款记账回调
-        AccountCallBack drawAccountCallBack = new AccountCallBack() {
+        Account account = Account.getInstance();
+        account.synAccount(transaction, entryKey, accDate, checkRed, new AccountCallBack() {
             @Override
             public DrawTransaction callBack() {
                 //落地出款附属
@@ -135,8 +136,6 @@ public class DrawServiceImpl implements DrawService {
                 drawTransaction.save();
                 return drawTransaction;
             }
-        };
-        Account account = Account.getInstance();
-        account.synAccount(transaction, entryKey, accDate, checkRed, drawAccountCallBack);
+        });
     }
 }

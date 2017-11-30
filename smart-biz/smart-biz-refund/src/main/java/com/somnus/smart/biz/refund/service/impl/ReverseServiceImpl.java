@@ -83,9 +83,10 @@ public class ReverseServiceImpl implements ReverseService {
         if (BasConstants.FEE_FLAG_REC.equals(oriTransaction.getFeeFlag()) && BasConstants.FEE_STL_MODE_TRAN.equals(oriTransaction.getFeeStlMode())) {
             transaction.setFeeAmt(oriTransaction.getFeeAmt());
         }
-        //沖正记账回调
-        AccountCallBack reverseAccountCallBack = new AccountCallBack() {
-
+        //同步记账
+        Account account = Account.getInstance();
+        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, new AccountCallBack() {
+        	//沖正记账回调
             @Override
             public Object callBack() {
                 if (BasConstants.REVERSE_STATUS_CANCELED.equals(tranReverse.getStatus())
@@ -103,10 +104,7 @@ public class ReverseServiceImpl implements ReverseService {
                 //return tranReverse;
 				return tranReverse;
             }
-        };
-        //同步记账
-        Account account = Account.getInstance();
-        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, reverseAccountCallBack);
+        });
     }
 
     /**

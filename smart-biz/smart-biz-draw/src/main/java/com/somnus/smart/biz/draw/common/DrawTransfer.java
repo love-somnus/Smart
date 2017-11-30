@@ -27,7 +27,7 @@ public class DrawTransfer extends CommonTransfer {
      * @param request
      */
     public static Transaction msgToTransaction(BankDrawRequest request) {
-        Transaction transaction = new Transaction();
+        Transaction transaction = Transaction.getInstance();
         BeanUtils.copyProperties(request, transaction);
         msgAdditional(request, transaction);
         CommonTransfer.initial(transaction);
@@ -35,7 +35,7 @@ public class DrawTransfer extends CommonTransfer {
     }
 
     public static TranDraw msgToTranDraw(BankDrawRequest request) {
-        TranDraw tranDraw = new TranDraw();
+        TranDraw tranDraw = TranDraw.getInstance();
         BeanUtils.copyProperties(request, tranDraw);
         tranDraw.setStatus(DrawConstants.DRAW_STATUS_OUT);
         tranDraw.setSubmitTime(DateUtil.getCurrentTimeStamp());

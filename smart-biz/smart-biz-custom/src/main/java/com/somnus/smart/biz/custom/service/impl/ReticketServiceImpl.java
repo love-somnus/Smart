@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.somnus.smart.biz.custom.common.CusConstants;
 import com.somnus.smart.biz.custom.service.ReticketService;
 import com.somnus.smart.domain.account.Account;
-import com.somnus.smart.domain.account.AccountCallBack;
 import com.somnus.smart.domain.account.DrawTransaction;
 import com.somnus.smart.domain.account.RefundTransaction;
 import com.somnus.smart.domain.account.Transaction;
@@ -57,15 +56,8 @@ public class ReticketServiceImpl implements ReticketService {
         trntransaction.setBankAccCode(draw.getIpsAccount());//通道对应银行收款账号
         trntransaction.setBankCost(draw.getBankCost());//银行成本
         trntransaction.setSysCode(draw.getSysCode());//原交易系统编号
-        Account account=Account.getInstance();
-        AccountCallBack callBack=new AccountCallBack() {
-            
-            @Override
-            public Object callBack() {
-                return null;
-            }
-        };
-        account.synAccount(trntransaction, CusConstants.ENTRY_KEY_RETICKET1, trntransaction.getAccDate(), true, callBack);
+        Account account = Account.getInstance();
+        account.synAccount(trntransaction, CusConstants.ENTRY_KEY_RETICKET1, trntransaction.getAccDate(), true, null);
     }
 
     @Override
@@ -80,14 +72,7 @@ public class ReticketServiceImpl implements ReticketService {
         trntransaction.setBankCost(refundTransaction.getBankCost());//银行成本
         trntransaction.setSysCode(refundTransaction.getSysCode());//原交易系统编号
         Account account=Account.getInstance();
-        AccountCallBack callBack=new AccountCallBack() {
-            
-            @Override
-            public Object callBack() {
-                return null;
-            }
-        };
-        account.synAccount(trntransaction, entryKey, trntransaction.getAccDate(), true, callBack);
+        account.synAccount(trntransaction, entryKey, trntransaction.getAccDate(), true, null);
     }
 
 }

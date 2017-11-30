@@ -7,15 +7,14 @@ import com.somnus.smart.base.domain.TrnTranrefuse;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 拒付附属
- */
+/** 拒付附属 */
 public class TranRefuse extends TrnTranrefuse implements DomainModel<TranRefuse, TrnTranrefuse> {
 
-    private static TrnTranrefuseDao   dao;
+	private static final long serialVersionUID = 1L;
+	
+	private static TrnTranrefuseDao   dao;
 
-    public TranRefuse() {
-    }
+	private TranRefuse() { }
 
     public static TranRefuse getInstance() {
         return (TranRefuse) DomainHelper.getDomainInstance(TranRefuse.class);

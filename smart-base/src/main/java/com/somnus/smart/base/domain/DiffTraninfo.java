@@ -3,7 +3,10 @@ package com.somnus.smart.base.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class DiffTraninfo {
+public class DiffTraninfo extends Entity {
+
+	private static final long serialVersionUID = 1L;
+	
     private String     errNo;
 
     private Date       accDate;

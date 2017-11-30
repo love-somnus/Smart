@@ -7,17 +7,14 @@ import com.somnus.smart.base.domain.TrnTranRefund;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 出款附属
- */
+/** 出款附属 */
 public class TranRefund extends TrnTranRefund implements DomainModel<TranRefund, TrnTranRefund> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnTranRefundDao   dao;
 
-    public TranRefund() {
-    }
+	private TranRefund() { }
 
     public static TranRefund getInstance() {
         return (TranRefund) DomainHelper.getDomainInstance(TranRefund.class);

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.somnus.smart.base.domain.CusSubaccinfo;
-import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.biz.custom.common.ReticketConstants;
 import com.somnus.smart.biz.custom.resource.BuckleDrawResource;
 import com.somnus.smart.biz.custom.service.BuckleDrawService;
@@ -61,7 +60,7 @@ public class BuckleDrawResourceImpl implements BuckleDrawResource {
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
                 log.info("重复记账：{}", request.getAppTranNo());
-                setRepMsg(repMsg, queryTransaction);
+                MessageUtil.setRepMsg(repMsg, queryTransaction);
                 return repMsg;
             }
 
@@ -77,7 +76,7 @@ public class BuckleDrawResourceImpl implements BuckleDrawResource {
             // 4、扣划记账
             buckleDrawService.buckDrawSynAccount(transaction,request,cusSubaccinfo.getSubAccCode());
             
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, queryTransaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -91,10 +90,4 @@ public class BuckleDrawResourceImpl implements BuckleDrawResource {
         return repMsg;
     }
 
-    private void setRepMsg(AccountResponse repMsg, TrnTransaction trntransaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(trntransaction.getAccDate());
-        repMsg.setAccTranNo(trntransaction.getAccTranNo());
-        repMsg.setAppTranNo(trntransaction.getAppTranNo());
-    }
 }

@@ -14,7 +14,7 @@ public class DepositTransfer extends CommonTransfer {
      * @param depositRequest
      */
     public static Transaction msgToTransaction(DepositRequest depositRequest) {
-        Transaction transaction = new Transaction();
+        Transaction transaction = Transaction.getInstance();
         BeanUtils.copyProperties(depositRequest, transaction);
         msgAdditional(depositRequest, transaction);
         incomeSet(transaction);

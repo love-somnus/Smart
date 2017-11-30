@@ -6,7 +6,9 @@ import java.util.Date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
+import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.message.Message;
+import com.somnus.smart.message.Response;
 import com.somnus.smart.support.common.MsgCodeList;
 import com.somnus.smart.support.exceptions.BizException;
 
@@ -115,4 +117,17 @@ public class MessageUtil {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	/**
+	 * 设置账务返回结果报文头
+	 * @param repMsg
+	 * @param trntransaction
+	 */
+	public static void setRepMsg(Response repMsg, TrnTransaction trntransaction) {
+		createCommMsg(repMsg);
+		repMsg.setAccDate(trntransaction.getAccDate());
+		repMsg.setAccTranNo(trntransaction.getAccTranNo());
+		repMsg.setAppTranNo(trntransaction.getAppTranNo());
+	}
+
 }

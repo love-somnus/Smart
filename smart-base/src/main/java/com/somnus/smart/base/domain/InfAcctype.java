@@ -1,7 +1,10 @@
 package com.somnus.smart.base.domain;
 
 public class InfAcctype extends Entity {
-    private String accType;
+	
+	private static final long serialVersionUID = 1L;
+
+	private String accType;
 
     private String accTypeName;
 

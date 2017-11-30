@@ -7,17 +7,14 @@ import com.somnus.smart.base.domain.TrnTranDraw;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 出款附属
- */
+/** 出款附属  */
 public class TranDraw extends TrnTranDraw implements DomainModel<TranDraw, TrnTranDraw> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnTranDrawDao     dao;
 
-    public TranDraw() {
-    }
+	private TranDraw() { }
 
     public static TranDraw getInstance() {
         return (TranDraw) DomainHelper.getDomainInstance(TranDraw.class);

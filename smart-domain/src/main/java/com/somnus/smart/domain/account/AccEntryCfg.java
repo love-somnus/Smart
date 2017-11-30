@@ -20,9 +20,7 @@ import com.somnus.smart.service.component.cache.CfgAccEntryCache;
 import com.somnus.smart.support.common.MsgCodeList;
 import com.somnus.smart.support.exceptions.BizException;
 
-/**
- * 分账户明细
- */
+/** 分账户明细  */
 public class AccEntryCfg extends CfgAccEntry implements DomainModel<AccEntryCfg, CfgAccEntry> {
     
 	private static final long serialVersionUID = 1L;
@@ -33,6 +31,8 @@ public class AccEntryCfg extends CfgAccEntry implements DomainModel<AccEntryCfg,
     private static CfgAccEntryCache      cfgAccEntryCache;
 
     private static Logger                LOGGER = LoggerFactory.getLogger(AccEntryCfg.class);
+    
+    private AccEntryCfg(){ }
 
     /**
      * 获取实例

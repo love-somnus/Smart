@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.somnus.smart.biz.custom.common.CustomTransfer;
 import com.somnus.smart.biz.custom.service.ForeignExchangeService;
 import com.somnus.smart.domain.account.Account;
-import com.somnus.smart.domain.account.AccountCallBack;
 import com.somnus.smart.domain.account.Transaction;
 import com.somnus.smart.message.custom.PurchaseExchangeRequest;
 import com.somnus.smart.message.custom.PurchaseWriteOffRequest;
@@ -38,14 +37,7 @@ public class ForeignExchangeServiceImpl implements ForeignExchangeService {
     @Transactional
     public void foreignExchangeSynAccount(Transaction transaction, Date accDate, boolean checkRed, String entryKeySettleExchange) throws Exception {
         Account account = Account.getInstance();
-        AccountCallBack callBack = new AccountCallBack() {
-
-            @Override
-            public Object callBack() {
-                return null;
-            }
-        };
-        account.synAccount(transaction, entryKeySettleExchange, transaction.getAccDate(), true, callBack);
+        account.synAccount(transaction, entryKeySettleExchange, transaction.getAccDate(), true, null);
     }
 
     @Override

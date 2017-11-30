@@ -4,10 +4,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrnTransfer extends Entity {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6968868237714691573L;
+	
+	private static final long serialVersionUID = 1L;
+	
     private String transferId;
 
     private Date accDate;

@@ -15,7 +15,6 @@ import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.biz.custom.common.CustomTransfer;
 import com.somnus.smart.biz.custom.service.FeeChargeService;
 import com.somnus.smart.domain.account.Account;
-import com.somnus.smart.domain.account.AccountCallBack;
 import com.somnus.smart.domain.account.TranFee;
 import com.somnus.smart.domain.account.Transaction;
 import com.somnus.smart.message.custom.FeeChargeRequest;
@@ -102,14 +101,7 @@ public class FeeChargeServiceImpl implements FeeChargeService {
             throw new BizException(msa.getMessage(MsgCodeList.ERROR_302032, new Object[] {}));
         }
         Account account = Account.getInstance();
-        AccountCallBack callBack = new AccountCallBack() {
-
-            @Override
-            public Object callBack() {
-                return null;
-            }
-        };
-        account.synAccount(transaction, entryKeyFeeCharge, accDate, checkRed, callBack);
+        account.synAccount(transaction, entryKeyFeeCharge, accDate, checkRed, null);
     }
 
     @Override
@@ -120,15 +112,7 @@ public class FeeChargeServiceImpl implements FeeChargeService {
             throw new BizException(msa.getMessage(MsgCodeList.ERROR_302032, new Object[] {}));
         }
         Account account = Account.getInstance();
-        AccountCallBack callBack = new AccountCallBack() {
-
-            @Override
-            public Object callBack() {
-                createTrnFree(transaction, BasConstants.FEECHARGE_STATUS_SUCCESS);
-                return null;
-            }
-        };
-        account.synAccount(transaction, entryKeyUnfeeCharge, accDate, checkRed, callBack);
+        account.synAccount(transaction, entryKeyUnfeeCharge, accDate, checkRed, null);
         return transaction;
     }
 

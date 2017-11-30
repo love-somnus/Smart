@@ -66,7 +66,7 @@ public class IncomeResourceImpl implements IncomeResource {
             // 2、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(incomeRequest.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -80,7 +80,7 @@ public class IncomeResourceImpl implements IncomeResource {
             // 6、发送jms消息
             jmsService.incomeSend(transaction);
             // 7、返回同步处理结果
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -105,7 +105,7 @@ public class IncomeResourceImpl implements IncomeResource {
             //1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(depositRequest.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -119,7 +119,7 @@ public class IncomeResourceImpl implements IncomeResource {
             //5、同步记账
             incomeService.depositSynAccount(transaction, entryKey, transaction.getAccDate(), true);
             //6、返回同步处理结果
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -147,7 +147,7 @@ public class IncomeResourceImpl implements IncomeResource {
             // 2、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(cancelReverseRequest.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -180,7 +180,7 @@ public class IncomeResourceImpl implements IncomeResource {
                               + transaction.getFeeStlMode();
             incomeService.incomeSynAccount(transaction, entryKey, transaction.getAccDate(), true);
             // 8、返回同步处理结果
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -208,7 +208,7 @@ public class IncomeResourceImpl implements IncomeResource {
             // 2、记账流水重复校验
             Transaction queryTransaction = Transaction.selectByAppTranNo(ipsPayRequest.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -226,7 +226,7 @@ public class IncomeResourceImpl implements IncomeResource {
             String entryKey = IncomeConstants.ENTRY_KEY_IPSINCOME_PRE + transaction.getFeeFlag() + transaction.getFeeStlMode();
             incomeService.ipsPayAccount(transaction, entryKey, transaction.getAccDate(), true);
 
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -240,10 +240,4 @@ public class IncomeResourceImpl implements IncomeResource {
         return repMsg;
     }
 
-    private void setRepMsg(AccountResponse repMsg, Transaction transaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(transaction.getAccDate());
-        repMsg.setAccTranNo(transaction.getAccTranNo());
-        repMsg.setAppTranNo(transaction.getAppTranNo());
-    }
 }

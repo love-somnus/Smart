@@ -1,8 +1,8 @@
 package com.somnus.smart.base.domain;
 
-public class CfgAccEntry extends Entity {
+public class CfgAccEntry  extends Entity {
 
-	private static final long serialVersionUID = 1851866845364766969L;
+	private static final long serialVersionUID = 1L;
 
 	private String accEntryCode;
 

@@ -15,15 +15,12 @@ import com.somnus.smart.domain.AccountContext;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.service.common.CusSubAccInfoUtil;
 
-/**
- * 交易账户锁
- */
+/** 交易账户锁 */
 public class SubAccInfoLock {
 
     private static CusSubAccInfoDao dao;
 
-    private SubAccInfoLock() {
-    }
+    private SubAccInfoLock() { }
 
     public static SubAccInfoLock getInstance() {
         return (SubAccInfoLock) DomainHelper.getDomainInstance(SubAccInfoLock.class);

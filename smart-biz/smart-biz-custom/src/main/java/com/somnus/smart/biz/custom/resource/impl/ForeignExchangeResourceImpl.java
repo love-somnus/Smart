@@ -24,9 +24,8 @@ import com.somnus.smart.message.custom.SettlementExchangeRequest;
 import com.somnus.smart.message.custom.SettlementWriteOffRequest;
 import com.somnus.smart.service.BasBizService;
 import com.somnus.smart.service.common.BasConstants;
-import com.somnus.smart.service.common.BusinessUtil;
-import com.somnus.smart.service.common.Constants;
 import com.somnus.smart.service.common.MessageUtil;
+import com.somnus.smart.service.common.Constants;
 import com.somnus.smart.service.common.enums.AccountType;
 import com.somnus.smart.support.common.JsonUtils;
 import com.somnus.smart.support.exceptions.BizException;
@@ -57,7 +56,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+                MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -66,7 +65,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 3、交易流水、台账、明细账落地，余额更新
             foreignExchangeService.foreignExchangeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_SETTLE_EXCHANGE);
             //5)返回结汇处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -90,7 +89,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+                MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -99,7 +98,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 3、交易流水、台账、明细账落地，余额更新
             foreignExchangeService.foreignExchangeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_SETTLE_WRITEOFF);
             // 4、返回结汇处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -124,7 +123,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+                MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -141,7 +140,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 3、交易流水、台账、明细账落地，余额更新
             foreignExchangeService.foreignExchangeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_PURCHASE_EXCHANGE);
             // 4、返回结汇处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
 
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
@@ -167,7 +166,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                BusinessUtil.setRepMsg(repMsg, queryTransaction);
+                MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -177,7 +176,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
             // 3、交易流水、台账、明细账落地，余额更新
             foreignExchangeService.foreignExchangeSynAccount(transaction, transaction.getAccDate(), true, CusConstants.ENTRY_KEY_PURCHASE_WRITEOFF);
             // 4、返回结汇处理结果
-            BusinessUtil.setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文

@@ -23,9 +23,7 @@ import com.somnus.smart.support.common.MsgCodeList;
 import com.somnus.smart.support.exceptions.BizException;
 import com.somnus.smart.support.util.DateUtil;
 
-/**
- * 账户
- */
+/** 账户 */
 public class SubAccInfo extends CusSubaccinfo implements DomainModel<SubAccInfo, CusSubaccinfo> {
 
 	private static final long serialVersionUID = 1L;
@@ -38,8 +36,7 @@ public class SubAccInfo extends CusSubaccinfo implements DomainModel<SubAccInfo,
 
     private static Logger                LOGGER = LoggerFactory.getLogger(SubAccInfo.class);
 
-    public SubAccInfo() {
-    }
+    private SubAccInfo() { }
 
     public static SubAccInfo getInstance() {
         return (SubAccInfo) DomainHelper.getDomainInstance(SubAccInfo.class);
@@ -76,10 +73,10 @@ public class SubAccInfo extends CusSubaccinfo implements DomainModel<SubAccInfo,
     public SubAccInfo getSubAccInfo(String subType, String relSubCode, String merAccCode, String ccyCode) {
         
         CusSubaccinfo cusSubaccinfo = null;
-        if(merAccCode==null){
-            cusSubaccinfo=cusSubAccInfoDao.selectBycode(CusSubAccInfoUtil.getTableByAccCodeLength(0), relSubCode, merAccCode, ccyCode);
+        if(merAccCode == null){
+            cusSubaccinfo = cusSubAccInfoDao.selectBycode(CusSubAccInfoUtil.getTableByAccCodeLength(0), relSubCode, merAccCode, ccyCode);
         }else{
-            cusSubaccinfo=cusSubAccInfoDao.selectBycode(CusSubAccInfoUtil.getTableByAccCodeLength(merAccCode.length()), relSubCode, merAccCode, ccyCode);
+            cusSubaccinfo = cusSubAccInfoDao.selectBycode(CusSubAccInfoUtil.getTableByAccCodeLength(merAccCode.length()), relSubCode, merAccCode, ccyCode);
         }
         if ((cusSubaccinfo == null) && (merAccCode == null)) {
             LOGGER.info("内部账户不存在，自动开户relSubCode:{},merAccCode:{},ccyCode:{}", new Object[] { relSubCode, merAccCode, ccyCode });

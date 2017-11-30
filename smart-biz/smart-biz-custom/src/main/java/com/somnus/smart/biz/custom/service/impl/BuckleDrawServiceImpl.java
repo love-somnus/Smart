@@ -102,7 +102,8 @@ public class BuckleDrawServiceImpl implements BuckleDrawService {
      */
     @Transactional
     private void buckDrawAccountDo(final Transaction transaction,String entryKeyBuckDraw) throws Exception {
-        AccountCallBack callBack = new AccountCallBack() {
+        Account account = Account.getInstance();
+        account.synAccount(transaction, entryKeyBuckDraw, transaction.getAccDate(), true, new AccountCallBack() {
 
             @Override
             public TranDraw callBack() {
@@ -117,9 +118,7 @@ public class BuckleDrawServiceImpl implements BuckleDrawService {
                 tranDraw.save();
                 return tranDraw;
             }
-        };
-        Account account = Account.getInstance();
-        account.synAccount(transaction, entryKeyBuckDraw, transaction.getAccDate(), true, callBack);
+        });
     }
 
 }

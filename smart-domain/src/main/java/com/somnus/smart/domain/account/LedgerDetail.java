@@ -24,9 +24,7 @@ import com.somnus.smart.support.exceptions.BizException;
 import com.somnus.smart.support.util.DateUtil;
 import com.somnus.smart.support.util.ValidateUtil;
 
-/**
- * 台账
- */
+/** 台账 */
 public class LedgerDetail extends TrnLedgerDetail implements DomainModel<LedgerDetail, TrnLedgerDetail> {
 	private static final long serialVersionUID = 1L;
 	
@@ -45,9 +43,7 @@ public class LedgerDetail extends TrnLedgerDetail implements DomainModel<LedgerD
 	/** Logger */
 	private static Logger LOGGER = LoggerFactory.getLogger(LedgerDetail.class);
 
-	public LedgerDetail() {
-
-	}
+	private LedgerDetail() { }
 
 	public static LedgerDetail getInstance() {
 

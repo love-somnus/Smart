@@ -107,7 +107,7 @@ public class RefundWriteOffServiceImpl implements RefundWriteOffService {
      */
     private void refundWriteOffAccountDo(final RefundTransaction refundTransaction, String entryKey, Transaction transaction) throws Exception {
         Account account = Account.getInstance();
-        AccountCallBack refundWriteOffAccountCallBack = new AccountCallBack() {
+        account.synAccountNoTransaction(transaction, entryKey, transaction.getAccDate(), false, new AccountCallBack() {
 
             @Override
             public RefundTransaction callBack() {
@@ -117,8 +117,7 @@ public class RefundWriteOffServiceImpl implements RefundWriteOffService {
                 refundTransaction.update();
                 return refundTransaction;
             }
-        };
-        account.synAccountNoTransaction(transaction, entryKey, transaction.getAccDate(), false, refundWriteOffAccountCallBack);
+        });
     }
 
     /**

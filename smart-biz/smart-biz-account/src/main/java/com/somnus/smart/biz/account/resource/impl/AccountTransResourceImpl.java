@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.biz.account.resource.AccountTransResource;
 import com.somnus.smart.biz.account.service.AccountService;
 import com.somnus.smart.domain.account.AccEntryCfg;
@@ -48,7 +47,7 @@ public class AccountTransResourceImpl implements AccountTransResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -64,7 +63,7 @@ public class AccountTransResourceImpl implements AccountTransResource {
             // 5、账户同步记账
             accountService.accountSysAccount(transaction, entryKey, transaction.getAccDate(), true);
 
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, queryTransaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -76,13 +75,6 @@ public class AccountTransResourceImpl implements AccountTransResource {
         }
         log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
         return repMsg;
-    }
-
-    private void setRepMsg(AccountResponse repMsg, TrnTransaction trntransaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(trntransaction.getAccDate());
-        repMsg.setAccTranNo(trntransaction.getAccTranNo());
-        repMsg.setAppTranNo(trntransaction.getAppTranNo());
     }
 
 }

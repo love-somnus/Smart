@@ -101,7 +101,7 @@ public class BatchIpsDrawServiceImpl implements BatchIpsDrawService {
         String entryKey = AccountConstants.ENTRY_KEY_ISSUEDIPS_TOTAL_PRE + transaction.getFeeFlag() + transaction.getFeeStlMode();
         final List<Transaction> transactions = new ArrayList<Transaction>(request.getOrders().size());
         final Account account = Account.getInstance();
-        AccountCallBack callBack = new AccountCallBack() {
+        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, new AccountCallBack() {
 
             @Override
             public Object callBack() throws Exception {
@@ -120,8 +120,8 @@ public class BatchIpsDrawServiceImpl implements BatchIpsDrawService {
                 }
                 return transactions;
             }
-        };
-        account.synAccount(transaction, entryKey, transaction.getAccDate(), true, callBack);
+            
+        });
 
         for (Transaction tran : transactions) {
             account.multiAccount(tran, AccountConstants.ENTRY_KEY_ISSUEDIPS_DETAIL_PRE + tran.getFeeFlag() + tran.getFeeStlMode(), false,

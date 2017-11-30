@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.somnus.smart.base.domain.CusSubaccinfo;
-import com.somnus.smart.base.domain.TrnTransaction;
 import com.somnus.smart.biz.draw.resource.RefusePayResource;
 import com.somnus.smart.biz.draw.service.RefuseService;
 import com.somnus.smart.domain.account.TranRefuse;
@@ -62,7 +61,7 @@ public class RefusePayResourceImpl implements RefusePayResource {
             // 1、重复记账检查
             Transaction queryTransaction = Transaction.selectByAppTranNo(request.getAppTranNo());
             if (queryTransaction != null) {
-                setRepMsg(repMsg, queryTransaction);
+            	MessageUtil.setRepMsg(repMsg, queryTransaction);
                 log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
                 return repMsg;
             }
@@ -93,7 +92,7 @@ public class RefusePayResourceImpl implements RefusePayResource {
             // 8、拒付记账处理
             refuseService.refusePaySynAccount(request.getRefKind(), request.getTranAmt(), oriTransaction, transaction, tranRefuse,
                 request.getPayerAccCode(), request.getCcyCode());
-            setRepMsg(repMsg, transaction);
+            MessageUtil.setRepMsg(repMsg, transaction);
         } catch (BizException e) {
             log.error(Constants.BUSINESS_ERROR, e);
             // 组织错误报文
@@ -105,13 +104,6 @@ public class RefusePayResourceImpl implements RefusePayResource {
         }
         log.info(Constants.REPONSE_MSG, JsonUtils.toString(repMsg));
         return repMsg;
-    }
-
-    private void setRepMsg(RefusePayResponse repMsg, TrnTransaction trntransaction) {
-        MessageUtil.createCommMsg(repMsg);
-        repMsg.setAccDate(trntransaction.getAccDate());
-        repMsg.setAccTranNo(trntransaction.getAccTranNo());
-        repMsg.setAppTranNo(trntransaction.getAppTranNo());
     }
 
 }

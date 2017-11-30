@@ -7,17 +7,14 @@ import com.somnus.smart.base.domain.TrnTranReverse;
 import com.somnus.smart.domain.DomainHelper;
 import com.somnus.smart.domain.DomainModel;
 
-/**
- * 冲正附属
- */
+/** 冲正附属 */
 public class TranReverse extends TrnTranReverse implements DomainModel<TranReverse, TrnTranReverse> {
 
 	private static final long serialVersionUID = 1L;
 
 	private static TrnTranReverseDao  dao;
 
-    public TranReverse() {
-    }
+	private TranReverse() { }
 
     public static TranReverse getInstance() {
         return (TranReverse) DomainHelper.getDomainInstance(TranReverse.class);
