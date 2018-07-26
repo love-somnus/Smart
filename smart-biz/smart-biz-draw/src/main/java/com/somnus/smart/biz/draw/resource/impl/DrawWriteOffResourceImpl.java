@@ -1,10 +1,6 @@
 package com.somnus.smart.biz.draw.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +24,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.draw.resource.DrawWriteOffResource")
 public class DrawWriteOffResourceImpl implements DrawWriteOffResource {
 
     protected static Logger     log = LoggerFactory.getLogger(DrawWriteOffResourceImpl.class);
@@ -37,9 +32,6 @@ public class DrawWriteOffResourceImpl implements DrawWriteOffResource {
     @Resource
     private DrawWriteOffService drawWriteOffService;
 
-    @Path("/writeOff")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Message writeOff(DrawWriteOffRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

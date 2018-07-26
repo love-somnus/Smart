@@ -1,10 +1,6 @@
 package com.somnus.smart.biz.refund.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +23,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.refund.resource.RefundWriteOffResource")
 public class RefundWriteOffResourceImpl implements RefundWriteOffResource {
 
     protected static Logger       log = LoggerFactory.getLogger(RefundWriteOffResourceImpl.class);
@@ -35,9 +30,6 @@ public class RefundWriteOffResourceImpl implements RefundWriteOffResource {
     @Resource
     private RefundWriteOffService refundWriteOffService;
 
-    @Path("/writeOff")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public Message writeOff(RefundWriteOffRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

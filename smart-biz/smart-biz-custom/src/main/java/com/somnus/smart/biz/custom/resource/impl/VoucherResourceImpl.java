@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +27,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.VoucherResource")
 public class VoucherResourceImpl implements VoucherResource {
 
     protected static Logger log = LoggerFactory.getLogger(VoucherResourceImpl.class);
@@ -39,9 +34,6 @@ public class VoucherResourceImpl implements VoucherResource {
     @Resource
     private VoucherService  voucherService;
 
-    @Path("/voucherEnter")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public VoucherEnterResponse voucherEnter(VoucherEnterRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

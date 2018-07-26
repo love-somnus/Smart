@@ -1,11 +1,6 @@
 package com.somnus.smart.biz.account.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -27,7 +22,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.account.resource.AccountTransResource")
 public class AccountTransResourceImpl implements AccountTransResource {
 
     protected static Logger log = LoggerFactory.getLogger(AccountTransResourceImpl.class);
@@ -36,9 +30,6 @@ public class AccountTransResourceImpl implements AccountTransResource {
     @Resource
     private AccountService  accountService;
 
-    @Path("/accountTrans")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse accountTrans(AccountTransRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

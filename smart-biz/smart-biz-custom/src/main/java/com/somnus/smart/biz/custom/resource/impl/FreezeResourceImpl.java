@@ -3,10 +3,6 @@ package com.somnus.smart.biz.custom.resource.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +33,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.FreezeResource")
 public class FreezeResourceImpl implements FreezeResource {
 
     private transient Logger     log = LoggerFactory.getLogger(this.getClass());
@@ -48,9 +43,7 @@ public class FreezeResourceImpl implements FreezeResource {
     @Resource
     private BasBizService        basbizService;
 
-    @Path("/accountFreeze")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message accountFreeze(AccountFreezeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message repMsg = new Message();
@@ -121,9 +114,7 @@ public class FreezeResourceImpl implements FreezeResource {
         return repMsg;
     }
 
-    @Path("/tranFreeze")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message tranFreeze(TranFreezeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();

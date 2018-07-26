@@ -3,10 +3,6 @@ package com.somnus.smart.biz.account.resource.impl;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +28,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.account.resource.BatchIpsDrawResource")
 public class BatchIpsDrawResourceImpl implements BatchIpsDrawResource {
 
     protected static Logger     log = LoggerFactory.getLogger(BatchIpsDrawResourceImpl.class);
@@ -43,9 +38,6 @@ public class BatchIpsDrawResourceImpl implements BatchIpsDrawResource {
     @Resource
     private BatchIpsDrawService batchIpsDrawService;
 
-    @Path("/batchIpsDraw")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse batchIpsDraw(BatchIpsDrawRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

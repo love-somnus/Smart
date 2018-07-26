@@ -51,10 +51,6 @@
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-jta_1.1_spec</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.somnus.rest.core</groupId>
-            <artifactId>rest-core</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

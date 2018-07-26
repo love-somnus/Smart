@@ -1,10 +1,6 @@
 package com.somnus.smart.biz.meracc.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +23,6 @@ import com.somnus.smart.support.exceptions.BizException;
 
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.meracc.resource.MeracctResource")
 public class MeracctResourceImpl implements MeracctResource {
 
     private transient Logger log = LoggerFactory.getLogger(this.getClass());
@@ -35,9 +30,7 @@ public class MeracctResourceImpl implements MeracctResource {
     @Resource
     private MeracctService   meracctService;
 
-    @Path("/createMeracct")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message createMeracct(MeracctRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message message = new Message();
@@ -58,9 +51,7 @@ public class MeracctResourceImpl implements MeracctResource {
         return message;
     }
     
-    @Path("/createPersonAccount")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message createPersonAccount(PerAccountRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message message = new Message();
@@ -81,9 +72,7 @@ public class MeracctResourceImpl implements MeracctResource {
         return message;
     }
     
-    @Path("/updatePersonAccount")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message updatePersonAccount(PerAccountUpdRequest request){
     	log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message message = new Message();
@@ -104,9 +93,7 @@ public class MeracctResourceImpl implements MeracctResource {
         return message;
     }
 
-    @Path("/updateMermerchant")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message updateMermerchant(MerchantupdRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message message = new Message();
@@ -127,9 +114,7 @@ public class MeracctResourceImpl implements MeracctResource {
         return message;
     }
 
-    @Path("/updateMeraccount")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public Message updateMeraccount(MeraccountupdRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         Message message = new Message();
@@ -151,11 +136,8 @@ public class MeracctResourceImpl implements MeracctResource {
     }
 
     /**
-     * 开通特定账户
+	 * 开通特定账户
      */
-    @Path("/createSpeAccount")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
 	@Override
 	public Message createSpeAccount(SpeAccountRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

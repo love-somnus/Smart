@@ -16,32 +16,6 @@
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>com.somnus.plugin</groupId>
-                <artifactId>extract-maven-plugin</artifactId>
-                <version>${extract-maven-plugin.version}</version>
-                <configuration>
-                    <sourceDirectors>
-                        <sourceDirector>
-                            <directory>${project.parent.basedir}/**/src/main/java</directory>
-                            <includes>
-                                <include>com/somnus/smart/biz/**/resource/*.java</include>
-                                <include>com/somnus/smart/message/**/*.java</include>
-                            </includes>
-                        </sourceDirector>
-                    </sourceDirectors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>extract</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        
         <pluginManagement>
 			<plugins>
             	<plugin>

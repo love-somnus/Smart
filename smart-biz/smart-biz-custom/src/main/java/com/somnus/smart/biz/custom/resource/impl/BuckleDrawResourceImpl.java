@@ -1,10 +1,6 @@
 package com.somnus.smart.biz.custom.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +27,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.BuckleDrawResource")
 public class BuckleDrawResourceImpl implements BuckleDrawResource {
 
     private transient Logger  log = LoggerFactory.getLogger(this.getClass());
@@ -44,14 +39,12 @@ public class BuckleDrawResourceImpl implements BuckleDrawResource {
     private BasBizService     basbizService;
 
     /**
-     * 扣划（流动资金->扣划总户）
+	 * 扣划（流动资金->扣划总户）
      * 
      * @param request
      * @return
      */
-    @Path("/buckleDraw")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse buckleDraw(BuckleDrawRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();

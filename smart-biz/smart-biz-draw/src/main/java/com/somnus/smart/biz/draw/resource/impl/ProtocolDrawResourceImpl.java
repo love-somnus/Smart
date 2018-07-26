@@ -4,10 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +29,6 @@ import com.somnus.smart.support.util.ValidateUtil;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.draw.resource.ProtocolDrawResource")
 public class ProtocolDrawResourceImpl implements ProtocolDrawResource {
 
     protected static Logger     log = LoggerFactory.getLogger(ProtocolDrawResourceImpl.class);
@@ -49,9 +44,6 @@ public class ProtocolDrawResourceImpl implements ProtocolDrawResource {
     @Resource
     private BasBizService       basBizService;
 
-    @Path("/protocolDraw")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public ProtocolDrawResponse protocolDraw(ProtocolDrawRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

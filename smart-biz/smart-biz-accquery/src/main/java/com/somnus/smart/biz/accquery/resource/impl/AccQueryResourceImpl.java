@@ -1,17 +1,12 @@
 package com.somnus.smart.biz.accquery.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import com.somnus.rest.core.support.JsonUtils;
 import com.somnus.smart.biz.accquery.resource.AccQueryResource;
 import com.somnus.smart.biz.accquery.service.AccQueryService;
 import com.somnus.smart.message.accquery.CussubQueryRequest;
@@ -30,6 +25,7 @@ import com.somnus.smart.message.accquery.QueryPayAppRequest;
 import com.somnus.smart.message.accquery.QueryPayAppResponse;
 import com.somnus.smart.service.common.Constants;
 import com.somnus.smart.service.common.MessageUtil;
+import com.somnus.smart.support.common.JsonUtils;
 import com.somnus.smart.support.exceptions.BizException;
 
 /**
@@ -39,7 +35,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.accquery.resource.AccQueryResource")
 public class AccQueryResourceImpl implements AccQueryResource {
 
 	private transient Logger log = LoggerFactory.getLogger(this.getClass());
@@ -47,9 +42,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 	@Resource
 	private AccQueryService accQueryService;
 
-	@Path("/queryCusCurBal")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public CussubQueryResponse queryCusCurBal(CussubQueryRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		CussubQueryResponse response = new CussubQueryResponse();
@@ -70,9 +62,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryIssuedAcc")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public IssuedAccQueryResponse queryIssuedAcc(IssuedAccQueryRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		IssuedAccQueryResponse response = new IssuedAccQueryResponse();
@@ -93,9 +82,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryIssuedAccDetail")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public IssuedAccDetailQueryResponse queryIssuedAccDetail(IssuedAccDetailQueryRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		IssuedAccDetailQueryResponse response = new IssuedAccDetailQueryResponse();
@@ -116,9 +102,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryCusSubAccInfo")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public QueryCusSubResponse queryCusSubAccInfo(QueryCusSubAccRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		QueryCusSubResponse response = new QueryCusSubResponse();
@@ -139,9 +122,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryAccDetail")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public QueryAccDetailResponse queryAccDetail(QueryAccDetailRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		QueryAccDetailResponse response = new QueryAccDetailResponse();
@@ -162,9 +142,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryCusFif")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public QueryCusFifResponse queryCusFif(QueryCusFifRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		QueryCusFifResponse response = new QueryCusFifResponse();
@@ -185,9 +162,6 @@ public class AccQueryResourceImpl implements AccQueryResource {
 		return response;
 	}
 
-	@Path("/queryPaymentApp")
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public QueryPayAppResponse queryPaymentApp(QueryPayAppRequest request) {
 		log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
 		QueryPayAppResponse response = new QueryPayAppResponse();

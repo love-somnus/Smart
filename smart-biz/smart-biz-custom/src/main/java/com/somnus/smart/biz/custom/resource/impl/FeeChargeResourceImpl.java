@@ -3,10 +3,6 @@ package com.somnus.smart.biz.custom.resource.impl;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +33,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.FeeChargeResource")
 public class FeeChargeResourceImpl implements FeeChargeResource {
 
     @Autowired
@@ -51,9 +46,7 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
     @Resource
     private FeeChargeService      feeChargeService;
 
-    @Path("/charge")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse charge(FeeChargeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();
@@ -88,9 +81,7 @@ public class FeeChargeResourceImpl implements FeeChargeResource {
         return repMsg;
     }
 
-    @Path("/unFeeCharge")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse unFeeCharge(FeeChargeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();

@@ -1,10 +1,6 @@
 package com.somnus.smart.biz.draw.resource.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +30,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.draw.resource.RefusePayResource")
 public class RefusePayResourceImpl implements RefusePayResource {
 
     protected static Logger       log = LoggerFactory.getLogger(RefusePayResourceImpl.class);
@@ -50,9 +45,6 @@ public class RefusePayResourceImpl implements RefusePayResource {
     @Resource
     private RefuseService         refuseService;
 
-    @Path("/refusePay")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public RefusePayResponse refusePay(RefusePayRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));

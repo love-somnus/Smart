@@ -3,10 +3,6 @@ package com.somnus.smart.biz.custom.resource.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +23,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.AddAccountResource")
 public class AddAccountResourceImpl implements AddAccountResource {
 
     private transient Logger  log = LoggerFactory.getLogger(this.getClass());
@@ -36,14 +31,12 @@ public class AddAccountResourceImpl implements AddAccountResource {
     private AddAccountService addAccountService;
 
     /**
-     * 差异补记账
+	 * 差异补记账
      *
      * @param request
      * @return
      */
-    @Path("/addAccount")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AddAccountResponse addAccount(AddAccountRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AddAccountResponse repMsg = new AddAccountResponse();

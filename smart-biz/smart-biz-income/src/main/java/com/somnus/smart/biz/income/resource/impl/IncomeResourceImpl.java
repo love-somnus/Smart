@@ -3,10 +3,6 @@ package com.somnus.smart.biz.income.resource.impl;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +34,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.income.resource.IncomeResource")
 public class IncomeResourceImpl implements IncomeResource {
 
     protected static Logger log = LoggerFactory.getLogger(IncomeResourceImpl.class);
@@ -52,9 +47,6 @@ public class IncomeResourceImpl implements IncomeResource {
     @Resource
     private BasBizService   basBizService;
 
-    @Path("/bankIncome")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse bankIncome(IncomeRequest incomeRequest) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(incomeRequest));
@@ -94,9 +86,6 @@ public class IncomeResourceImpl implements IncomeResource {
         return repMsg;
     }
     
-    @Path("/deposit")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse deposit(DepositRequest depositRequest){
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(depositRequest));
@@ -133,9 +122,6 @@ public class IncomeResourceImpl implements IncomeResource {
         return repMsg;
     }
 
-    @Path("/cancelReverse")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse cancelReverse(CancelReverseRequest cancelReverseRequest) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(cancelReverseRequest));
@@ -194,9 +180,6 @@ public class IncomeResourceImpl implements IncomeResource {
         return repMsg;
     }
 
-    @Path("/ipsPay")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Override
     public AccountResponse ipsPay(IpsPayRequest ipsPayRequest) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(ipsPayRequest));

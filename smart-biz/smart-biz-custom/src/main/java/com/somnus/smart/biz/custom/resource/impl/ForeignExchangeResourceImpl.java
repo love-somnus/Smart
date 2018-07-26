@@ -3,10 +3,6 @@ package com.somnus.smart.biz.custom.resource.impl;
 import java.math.BigDecimal;
 
 import javax.annotation.Resource;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +31,6 @@ import com.somnus.smart.support.exceptions.BizException;
  */
 @Component
 @Validated
-@Path("/com.somnus.smart.biz.custom.resource.ForeignExchangeResource")
 public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
 
     private transient Logger       log = LoggerFactory.getLogger(this.getClass());
@@ -46,9 +41,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
     @Resource
     private ForeignExchangeService foreignExchangeService;
 
-    @Path("/settlementExchange")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse settlementExchange(SettlementExchangeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();
@@ -79,9 +72,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
         return repMsg;
     }
 
-    @Path("/settlementWriteOff")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse settlementWriteOff(SettlementWriteOffRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();
@@ -112,9 +103,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
         return repMsg;
     }
 
-    @Path("/purchaseExchange")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse purchaseExchange(PurchaseExchangeRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();
@@ -155,9 +144,7 @@ public class ForeignExchangeResourceImpl implements ForeignExchangeResource {
         return repMsg;
     }
 
-    @Path("/purchaseWriteOff")
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
+    @Override
     public AccountResponse purchaseWriteOff(PurchaseWriteOffRequest request) {
         log.info(Constants.REQUEST_MSG, JsonUtils.toString(request));
         AccountResponse repMsg = new AccountResponse();
